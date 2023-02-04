@@ -7,19 +7,26 @@ Post.init(
   {
     id: {
       type: DataTypes.INTEGER,
+      autoIncrement: true,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
     },
-    name: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    starting_date: {
-      type: DataTypes.DATE,
+    content: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
-    ending_date: {
+    creator_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'user',
+        key:'id',
+      },
+    },
+    date: {
       type: DataTypes.DATE,
       allowNull: false,
     },
