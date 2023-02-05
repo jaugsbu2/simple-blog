@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const { Post, User } = require('../models');
+const withAuth = require('../utils/auth');
 
-// GET all galleries for homepage
+// GET all posts for homepage
 router.get('/', async (req, res) => {
   try {
     const dbPostData = await Post.findAll({
@@ -27,58 +28,27 @@ router.get('/', async (req, res) => {
   }
 });
 
-// GET one gallery
-router.get('/gallery/:id', async (req, res) => {
-  // If the user is not logged in, redirect the user to the login page
+// GET all posts for dashboard
+router.get('/dashboard', (req, res) => {
   if (!req.session.loggedIn) {
     res.redirect('/login');
-  } else {
-    // If the user is logged in, allow them to view the gallery
-    try {
-      const dbGalleryData = await Gallery.findByPk(req.params.id, {
-        include: [
-          {
-            model: Painting,
-            attributes: [
-              'id',
-              'title',
-              'artist',
-              'exhibition_date',
-              'filename',
-              'description',
-            ],
-          },
-        ],
-      });
-      const gallery = dbGalleryData.get({ plain: true });
-      res.render('gallery', { gallery, loggedIn: req.session.loggedIn });
-    } catch (err) {
-      console.log(err);
-      res.status(500).json(err);
-    }
+    return;
   }
+
+  res.render('dashboard');
 });
 
-// GET one painting
-router.get('/painting/:id', async (req, res) => {
-  // If the user is not logged in, redirect the user to the login page
+// GET new post page
+router.get('/newpost', (req, res) => {
   if (!req.session.loggedIn) {
     res.redirect('/login');
-  } else {
-    // If the user is logged in, allow them to view the painting
-    try {
-      const dbPaintingData = await Painting.findByPk(req.params.id);
-
-      const painting = dbPaintingData.get({ plain: true });
-
-      res.render('painting', { painting, loggedIn: req.session.loggedIn });
-    } catch (err) {
-      console.log(err);
-      res.status(500).json(err);
-    }
+    return;
   }
+
+  res.render('newpost');
 });
 
+// GET login page
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {
     res.redirect('/');
