@@ -5,7 +5,7 @@ const newPostFormHandler = async (event) => {
   const content = document.querySelector('#post-content').value.trim();
   
   if (title && content) {
-    const response = await fetch('/api/users/login', {
+    const response = await fetch('/api/posts', {
       method: 'POST',
       body: JSON.stringify({ title, content }),
       headers: { 'Content-Type': 'application/json' },
@@ -14,7 +14,7 @@ const newPostFormHandler = async (event) => {
     if (response.ok) {
       document.location.replace('/');
     } else {
-      alert('Failed to log in.');
+      alert('Failed to make post.');
     }
   }
 };
