@@ -17,9 +17,8 @@ router.get('/', async (req, res) => {
     const posts = dbPostData.map((post) =>
       post.get({ plain: true })
     );
-
-    console.log(posts);
-
+    console.log(posts)
+    console.log(posts[0].user.username)
     res.render('homepage', {
       posts,
       loggedIn: req.session.loggedIn,
@@ -31,13 +30,30 @@ router.get('/', async (req, res) => {
 });
 
 // GET all posts for dashboard
-router.get('/dashboard', (req, res) => {
+router.get('/dashboard', async (req, res) => {
   if (!req.session.loggedIn) {
     res.redirect('/login');
     return;
   }
 
-  res.render('dashboard');
+  try {
+    const {username, userID, loggedIn} = req.session
+    const userPostData = await Post.findAll({
+      where: {
+        creator_id: userID
+      }
+    })
+    const posts = userPostData.map((post) =>
+    post.get({ plain: true })
+  );
+
+console.log(posts)
+  res.render('dashboard', 
+  {posts, username, userID, loggedIn});
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 });
 
 // GET new post page
@@ -46,8 +62,10 @@ router.get('/newpost', (req, res) => {
     res.redirect('/login');
     return;
   }
+  const loggedIn = req.session
 
-  res.render('newpost');
+  res.render('newpost',{
+  loggedIn,});
 });
 
 // GET login page

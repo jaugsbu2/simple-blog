@@ -2,6 +2,10 @@
 {{> userpost-details}}
 {{/each}} --}}
 
+
+{{#each posts as |post|}}
+{{> post-details}}
+{{/each}}
 <div>
 <a href="/newpost">
 <header>Make New Post</header>
