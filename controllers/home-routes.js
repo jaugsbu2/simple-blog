@@ -15,10 +15,13 @@ router.get("/", async (req, res) => {
     });
 
     const posts = dbPostData.map((post) => post.get({ plain: true }));
+    const { username, userID, loggedIn, } = req.session;
 
     res.render("homepage", {
       posts,
-      loggedIn: req.session.loggedIn,
+      loggedIn,
+      userID,
+      username,
     });
   } catch (err) {
     console.log(err);
