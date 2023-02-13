@@ -1,20 +1,6 @@
-{{#if loggedIn}}
-  <section class="card">
-      <header>
-        <h2>{{title}}</h2>
-        <p>Posted by {{user.username}} on {{format_date createdAt}}</p>
-      </header>
-      <div>
-        <p>
-          {{content}}
-        </p>
-      </div>
-  </section>
-
-{{else}}
-  <section class="card">
+<section class="card">
     <a href="/post/{{id}}">
-      <header>
+      <header class="title">
         <h2>{{title}}</h2>
         <p>Posted by {{user.username}} on {{format_date createdAt}}</p>
       </header>
@@ -25,4 +11,3 @@
       </div>
     </a>
   </section>
-{{/if}}

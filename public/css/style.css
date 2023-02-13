@@ -30,6 +30,7 @@ a:visited {
 
 header {
   padding: 40px;
+  padding-left: 3%;
   text-align: center;
   background: var(--primary);
   color: var(--light);
@@ -41,22 +42,15 @@ main {
   flex-grow: 1;
 }
 
-aside {
-  flex: 0;
-  background-color: var(--tertiary);
-  padding: 80px;
-  text-align: left;
-  color: var(--light);
-}
-
 nav {
   display: flex;
   background-color: var(--secondary);
+  justify-content: space-between;
 }
 
 nav a {
   color: var(--light);
-  padding: 14px 20px;
+  padding: 20px 20px;
   text-decoration: none;
   text-align: center;
 }
@@ -66,7 +60,11 @@ nav a:hover {
   background-color: var(--dark);
 }
 
-.gallery {
+#post-content {
+  height: 200px;
+}
+
+.main-content {
   flex: 4;
   background-color: #fff;
   padding: 50px;
@@ -84,36 +82,74 @@ nav a:hover {
   text-decoration: none;
   font-size: 100%;
   transition: color 0.1s;
-  margin-left: 16px;
+  height: 100%;
+  width: 100%;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
+.nav {
+  display: flex;
+flex-direction: row;
+align-items: center;
+padding-inline: 20px;
 }
 
-.painting {
-  width: 50%;
-  background-color: white;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin-bottom: 25px;
+.title {
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding-left: 3%;
 }
 
-.painting-details {
+.post-content {
+  padding-left: 3%;
+}
+
+.username {
+  padding-inline: 20px;
+  padding-top: 14px;
   text-align: center;
-  padding: 10px 20px;
-  font-weight: bold;
+  color: var(--dark);
+  text-decoration: none;
+  font-size: 100%;
 }
+
+.newpost {
+  width: 100%;
+}
+
+.comment {
+  padding: 0;
+  margin: 0;
+}
+
+.comment-header {
+padding-left: 6%;
+  color: var(--dark);
+  background-color: var(--secondary);
+  text-decoration: none;
+  font-size: 100%;
+  padding-bottom: 0%;
+}
+
+.comment-body {
+  padding-bottom: 0%;
+  padding-left: 6%;
+  font-size: 100%;
+}
+
 
 /* CARDS */
 .card {
   margin: 20px;
-  flex: 0 1 300px;
+  flex: 0 1 100%;
   border: 7px double var(--dark);
   border-radius: 10px;
   background-color: var(--light);
   color: var(--dark);
 }
+
+
 
 .login-card {
   margin: 0 0 20px 0;

@@ -42,6 +42,12 @@ router.get("/dashboard", async (req, res) => {
       where: {
         creator_id: userID,
       },
+      include: [
+        {
+          model: User,
+          attributes: ["username"],
+        },
+      ],
     });
     const posts = userPostData.map((post) => post.get({ plain: true }));
 
@@ -103,10 +109,12 @@ router.get("/newpost", (req, res) => {
     res.redirect("/login");
     return;
   }
-  const loggedIn = req.session;
+  const { username, userID, loggedIn, } = req.session;
 
   res.render("newpost", {
     loggedIn,
+    userID,
+    username,
   });
 });
 

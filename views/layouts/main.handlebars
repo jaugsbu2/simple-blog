@@ -10,14 +10,20 @@
 
   <body>
     <nav>
-      <a href="/">Home</a>
-              <a href="/dashboard">Dashboard</a>
-      {{#if loggedIn}}
-        <button id="logout" class="btn-no-style">Logout</button>
-        <p>Welcome {{username}}</p>
-      {{else}}
-        <a href="/login">Login</a>
-      {{/if}}
+      <div class="nav">
+        <a href="/">Home</a>
+        <a href="/dashboard">Dashboard</a>
+        {{#if loggedIn}}
+          <a href=""><button id="logout" class="btn-no-style">Logout</button></a>
+        {{else}}
+          <a href="/login"><button class="btn-no-style">Login</button></a>
+        {{/if}}
+      </div>
+      <div>
+        {{#if loggedIn}}
+          <p class="username">Welcome {{username}}</p>
+        {{/if}}
+      </div>
     </nav>
 
     <header>
@@ -25,7 +31,7 @@
     </header>
 
     <main>
-      <div class="gallery">
+      <div class="main-content">
         {{{body}}}
       </div>
     </main>

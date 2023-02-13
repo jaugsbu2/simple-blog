@@ -1,10 +1,12 @@
-<div>
-  <header>
-    <p>Comment by {{user.username}} on {{format_date createdAt}}</p>
-  </header>
-  <div>
-    <p>
-      {{content}}
-    </p>
-  </div>
+<div class="comment">
+
+  <p class="comment-header">Comment by
+    {{user.username}}
+    on
+    {{format_date createdAt}}</p>
+
+  <p class="comment-body">
+    {{content}}
+  </p>
+
 </div>

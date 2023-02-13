@@ -1,4 +1,4 @@
-console.log("comment js loaded")
+
 document.getElementById("post-id").style.display = "none";
 
 const commentFormHandler = async (event) => {
